@@ -1,0 +1,63 @@
+Before I get started, I want to make sure everybody understands the example I'll be using.  Is there anyone here who's not familiar with the concept of a stack?
+
+According to Wikipedia, "In computer science, a stack is a last in, first out (LIFO) abstract data type and linear data structure."
+
+Clear as mud, right?  How about some examples?
+
+Here's a stack.  (Show Ruby code implementing a stack.  Leave it on the screen for no more than 10 seconds.)
+Here's a stack.  (Show stacking ring toy.)
+Here's a stack.  (Show a spike like the one Fuego uses for orders.)
+Here's a stack.  (Show pile of cafeteria plates.)
+Here's a stack.  (Pull out sheet of card stock with the word "STACK" on it and a roughly 4"x4" square drawn on it, attach to wall.)
+
+A stack is a tool we can use to keep track of a bunch of stuff.
+
+There are two things we can do with a stack:
+* Push:  We can put one new thing onto the top of the stack.
+* Pop:   We can take one thing off of the top of the stack.
+
+Actually, there's a bonus third thing we can do with a stack:
+* Peek:  We can see what the thing on top of the stack is.  As a human looking at this example, you probably don't think of it this way, but reading a value is a separate operation.  It's a little more obvious when it's in a program.
+
+Let's start with the simplest operation:  peek.  (Cover square with hand.)  What's on my stack right now?  (Lift hand up.)  Nothing!  That means my stack is empty!
+
+Well, *that* was exciting.  Let's move on to push.  Someone give me a number between 1 and 20.  (Consider hauling out a comically large d20.)  (Write number on post-it, put post-it in square.  Repeat 2-3 times.)
+
+Okay, so now our stack has some stuff on it.  (Cover square with hand.)  If you thought peek was exciting before, well, do whatever you need to do to prepare yourselves mentally and physically.  What's on my stack right now?  (Lift hand up, read number.)
+
+So, now that we've got a list of stuff, let's process it.  I'm going to pop the stack.  (Take top post-it.)  [TODO:  think of something cute to do with numbers between 1 and 20.]
+
+--
+
+So, now that we all know what a stack is, I want to review what just happened.
+
+* I asked if everybody knew what a stack was.
+* I told you what a stack was.  It's "a last in, first out (LIFO) abstract data type and linear data structure."
+  * (Does that definition make more sense now than it did before?)
+* I helped you understand how a stack behaves, by giving you four different examples.
+
+In a roundabout way, this leads into one of the things testing is good for:  it communicates, *to other humans*, what your system does.
+
+    Code is like the Wikipedia definition:  precise, technical, pithy.  All the repetition has been carefully squeezed out of it.
+    Tests give examples that tell people how your code behaves.
+
+All code -- whether it's code in tests or code in an app -- tells a story.  But your tests tell the same story in a very different way that's better suited to the way humans learn.
+
+There's plenty of material out there that talks about the narrative structure of code.  What I want to talk to you about tonight is the narrative structure of tests.  No matter what kind of test you're writing (and there are a lot of different kinds of tests), and no matter what testing framework you're writing it in (and there are a lot of those too), every test should have a beginning, a middle, and an end.
+
+--
+
+Let's start by describing our Stack class with a bunch of Ruby code.
+
+[TODO: write tests that just use "raise msg unless predicate" to make assertions.]
+[TODO: take those tests and mark them up: first, group each test, then, group the arrange/act/assert sections within each test.]
+
+There are more than a few problems with this.  The first thing that jumps out at me is that pattern at the end of each test:  we're just raising exceptions, but we're always doing it the same way.  Let's apply the DRY principle to make...
+
+(Almost) The World's Simplest Ruby Testing Framework:
+
+def assert(truth, failure_message = nil)
+  failure_message ||= truth.inspect
+  raise failure_message unless truth
+end
+
