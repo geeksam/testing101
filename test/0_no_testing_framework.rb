@@ -1,4 +1,4 @@
-require File.join(File.dirname(__FILE__), *%w[lib stack])
+require File.expand_path(File.join(File.dirname(__FILE__), *%w[.. lib stack]))
 
 ##### Empty stack #####
 stack = Stack.new
