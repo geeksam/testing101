@@ -31,14 +31,15 @@ So, now that we've got a list of stuff, let's process it.  I'm going to pop the 
 
 So, now that we all know what a stack is, I want to review what just happened.
 
-* I asked if everybody knew what a stack was.
+* I wanted to make sure everybody knew what a stack was.
 * I told you what a stack was.  It's "a last in, first out (LIFO) abstract data type and linear data structure."
   * (Does that definition make more sense now than it did before?)
 * I helped you understand how a stack behaves, by giving you four different examples.
 
 In a roundabout way, this leads into one of the things testing is good for:  it communicates, *to other humans*, what your system does.
 
-    Code is like the Wikipedia definition:  precise, technical, pithy.  All the repetition has been carefully squeezed out of it.
+    Code is like the Wikipedia definition:  precise, technical, pithy.
+    All the repetition has been carefully squeezed out of it.
     Tests give examples that tell people how your code behaves.
 
 All code -- whether it's code in tests or code in an app -- tells a story.  But your tests tell the same story in a very different way that's better suited to the way humans learn.
@@ -47,10 +48,22 @@ There's plenty of material out there that talks about the narrative structure of
 
 --
 
-Let's start by describing our Stack class with a bunch of Ruby code.
+Let's start by describing our Stack class using plain old Ruby code.
 
-[TODO: write tests that just use "raise msg unless predicate" to make assertions.]
+[See:  0_no_testing_framework.rb]
+
+I deliberately avoided using any kind of framework here. I used comments,
+whitespace, and repetition to emphasize the patterns as much as I possibly
+could.
+
+Starting with a look at the whole file, we can see some basic patterns:
+
 [TODO: take those tests and mark them up: first, group each test, then, group the arrange/act/assert sections within each test.]
+
+
+There are a few different 
+
+
 
 There are more than a few problems with this.  The first thing that jumps out at me is that pattern at the end of each test:  we're just raising exceptions, but we're always doing it the same way.  Let's apply the DRY principle to make...
 
